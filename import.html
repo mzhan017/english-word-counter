@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Import known words - English Word Counter</title>
+    <link rel="stylesheet" href="import.css">
+  </head>
+  <body>
+    <main>
+      <h1>Import known words</h1>
+      <p>Choose a TXT or CSV file with words separated by lines, spaces, or commas, or a JSON array of words. Import starts automatically, and words are added to your existing list.</p>
+      <label for="import-file">Word list file</label>
+      <input id="import-file" type="file" accept=".txt,.csv,.json,text/plain,text/csv,application/json">
+      <p id="import-status" role="status" aria-live="polite">Choose a file to import it.</p>
+    </main>
+    <script src="import.js"></script>
+  </body>
+</html>

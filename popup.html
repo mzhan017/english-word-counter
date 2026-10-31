@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>English Word Counter</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>English Word Counter</h1>
+        <p id="page-status" role="status">Loading current page…</p>
+      </header>
+
+      <nav aria-label="Word lists">
+        <button id="page-tab" class="tab active" type="button" aria-selected="true">To learn</button>
+        <button id="frequency-tab" class="tab" type="button" aria-selected="false">All word counts</button>
+        <button id="known-tab" class="tab" type="button" aria-selected="false">Known <span id="known-total">0</span></button>
+      </nav>
+
+      <section id="page-panel">
+        <label class="search-label" for="page-search">Filter words to learn</label>
+        <input id="page-search" type="search" placeholder="Search words">
+        <label class="search-label sort-label" for="page-sort">Sort by</label>
+        <select id="page-sort">
+          <option value="frequency">Frequency (highest first)</option>
+          <option value="alphabetical">Alphabetical (A–Z)</option>
+          <option value="length">Word length (shortest first)</option>
+        </select>
+        <p id="page-summary" class="summary"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Word</th><th scope="col">Count</th><th scope="col">Action</th></tr>
+            </thead>
+            <tbody id="page-words"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="frequency-panel" hidden>
+        <label class="search-label" for="frequency-search">Filter all words</label>
+        <input id="frequency-search" type="search" placeholder="Search words">
+        <p id="frequency-summary" class="summary"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Word</th><th scope="col">Count</th></tr>
+            </thead>
+            <tbody id="frequency-words"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="known-panel" hidden>
+        <label class="search-label" for="known-search">Filter known words</label>
+        <input id="known-search" type="search" placeholder="Search words">
+        <p class="hint">Known words are excluded from the learning list. You can remove a word from this list here. Import a TXT or CSV word list separated by lines, spaces, or commas, or a JSON array of words.</p>
+        <div class="word-list-actions">
+          <button id="export-words" class="action" type="button">Export words</button>
+          <button id="import-words" class="action" type="button">Import words</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Word</th><th scope="col">Action</th></tr>
+            </thead>
+            <tbody id="known-words"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
