@@ -1,16 +1,26 @@
 # English Word Counter
 
-A Firefox extension that counts English words on the active webpage. Mark a word as known and it will be excluded from the learning list on future pages. The **Known** tab lets you review saved words and remove a mark.
+English Word Counter is a Firefox extension that counts English words on the active webpage and helps users manage vocabulary for future learning.
 
-## Load in Firefox
+## Features
 
-1. Open `about:debugging#/runtime/this-firefox`.
-2. Select **Load Temporary Add-on…**.
-3. Choose this folder's `manifest.json`.
-4. Open an HTTP or HTTPS webpage and select the extension button.
+- View words that have not been marked as known, sorted by frequency, alphabetically, or by word length.
+- Mark words as known to exclude them from learning lists on future pages.
+- Review all word counts for the current page, including words marked as known.
+- Review, import, and export the saved list of known words.
 
-The toolbar icon combines an open book with frequency bars to represent vocabulary learning and word counts.
+The extension counts case-insensitive alphabetic words, including contractions such as `don't`. Apostrophes are excluded when calculating word length. Frequency sorting uses alphabetical order to resolve ties.
 
-The extension counts case-insensitive alphabetic words (including contractions such as `don't`) from the page's visible text. The **To learn** tab lists not-yet-known words and lets you sort them by frequency (highest first, with alphabetical tie-breaking), alphabetically (A–Z), or by letter length (shortest first, with alphabetical tie-breaking). Apostrophes do not count toward a word's letter length. The **All word counts** tab lists every word on the current page, including known words, sorted by frequency from highest to lowest (alphabetically for ties). Known words are stored locally in Firefox and are not sent anywhere. In the **Known** tab, use **Export words** to save a newline-separated `known-words.txt` file, or **Import words** to open a separate import page that automatically merges a `.txt` or `.csv` word list (separated by lines, spaces, or commas) or a `.json` array of strings into the saved list. Imported words are lowercased and deduplicated.
+The **Known** tab supports exporting words as a newline-separated `known-words.txt` file and importing `.txt`, `.csv`, or `.json` word lists. Text and CSV entries may be separated by lines, spaces, or commas; JSON files must contain an array of strings. Imported words are converted to lowercase and deduplicated.
 
-Some built-in Firefox pages and pages where extensions are restricted cannot be read; the popup will show a message in those cases.
+## Privacy
+
+Known words are stored locally in Firefox and are not transmitted elsewhere.
+
+## Limitations
+
+Firefox restricts extension access to certain built-in pages and other protected pages. Word counts are unavailable on those pages.
+
+## Usage
+
+Open an HTTP or HTTPS webpage and select the extension button to view its word counts.
