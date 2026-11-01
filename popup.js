@@ -37,6 +37,11 @@ function sortedWords(words) {
   return words.sort((a, b) => (counts[b] || 0) - (counts[a] || 0) || a.localeCompare(b));
 }
 
+function isKnown(word) {
+  const alternate = word.endsWith("s") ? word.slice(0, -1) : `${word}s`;
+  return knownSet.has(word) || knownSet.has(alternate);
+}
+
 function addEmptyRow(target, message, columnCount) {
   const row = document.createElement("tr");
   const cell = document.createElement("td");
@@ -51,11 +56,11 @@ function renderPageWords() {
   pageWords.replaceChildren();
   const search = pageSearch.value.trim().toLowerCase();
   const words = sortedWords(
-    Object.keys(counts).filter((word) => !knownSet.has(word) && word.includes(search))
+    Object.keys(counts).filter((word) => !isKnown(word) && word.includes(search))
   );
-  const unknownCount = Object.keys(counts).filter((word) => !knownSet.has(word)).length;
+  const unknownCount = Object.keys(counts).filter((word) => !isKnown(word)).length;
   const totalOccurrences = Object.entries(counts).reduce(
-    (total, [word, count]) => total + (knownSet.has(word) ? 0 : count),
+    (total, [word, count]) => total + (isKnown(word) ? 0 : count),
     0
   );
 

@@ -3,7 +3,11 @@ browser.runtime.onMessage.addListener((message) => {
     return undefined;
   }
 
-  const text = document.body ? document.body.innerText : "";
+  const text = (document.body ? document.body.innerText : "").replace(
+    /(^|[^A-Za-z0-9-])([A-F0-9]+(?:-[A-F0-9]+)*-*)(?=$|[^A-Za-z0-9-])/gi,
+    (match, boundary, identifier) =>
+      identifier.replace(/-/g, "").length >= 32 ? `${boundary} ` : `${boundary}${identifier}`
+  );
   const words = text.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g) || [];
   const counts = {};
 

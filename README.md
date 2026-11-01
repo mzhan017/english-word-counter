@@ -6,10 +6,11 @@ English Word Counter is a Firefox extension that counts English words on the act
 
 - View words that have not been marked as known, sorted by frequency, alphabetically, or by word length.
 - Mark words as known to exclude them from learning lists on future pages.
+- Treat a word and its variant with or without a trailing `s` as known.
 - Review all word counts for the current page, including words marked as known.
 - Review, import, and export the saved list of known words.
 
-The extension counts case-insensitive alphabetic words, including contractions such as `don't`. Apostrophes are excluded when calculating word length. Frequency sorting uses alphabetical order to resolve ties.
+The extension counts case-insensitive alphabetic words, including contractions such as `don't`. Hexadecimal identifiers containing 32 or more digits, including hyphen-separated hashes, are excluded from word counts. Apostrophes are excluded when calculating word length. Frequency sorting uses alphabetical order to resolve ties.
 
 The **Known** tab supports exporting words as a newline-separated `known-words.txt` file and importing `.txt`, `.csv`, or `.json` word lists. Text and CSV entries may be separated by lines, spaces, or commas; JSON files must contain an array of strings. Imported words are converted to lowercase and deduplicated.
 
