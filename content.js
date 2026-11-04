@@ -8,10 +8,13 @@ browser.runtime.onMessage.addListener((message) => {
     (match, boundary, identifier) =>
       identifier.replace(/-/g, "").length >= 32 ? `${boundary} ` : `${boundary}${identifier}`
   );
-  const words = text.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g) || [];
+  const words = text.match(/[A-Za-z]+(?:['’][A-Za-z]+|[._@][A-Za-z]+)*/g) || [];
   const counts = {};
 
   for (const word of words) {
+    if (/[._@]/.test(word)) {
+      continue;
+    }
     const normalized = word.toLowerCase().replace(/['’](?:s|re|m|d|ve)$/, "");
     if (!normalized) {
       continue;
